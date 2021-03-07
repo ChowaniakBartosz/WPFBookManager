@@ -22,17 +22,29 @@ namespace WPFBookManager
     public partial class MainWindow : Window
     {
         BookDbContext dbContext;
+        Book NewBook = new Book();
 
         public MainWindow(BookDbContext dbContext)
         {
             this.dbContext = dbContext;
             InitializeComponent();
             GetBooks();
+
+            AddNewBookGrid.DataContext = NewBook;
         }
 
         private void GetBooks()
         {
             BookDG.ItemsSource = dbContext.Books.ToList();
+        }
+
+        private void AddBook(object s, RoutedEventArgs e)
+        {
+            dbContext.Books.Add(NewBook);
+            dbContext.SaveChanges();
+            GetBooks();
+            NewBook = new Book();
+            AddNewBookGrid.DataContext = NewBook;
         }
     }
 }

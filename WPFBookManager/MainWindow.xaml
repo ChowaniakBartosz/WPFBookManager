@@ -75,7 +75,7 @@
 
                         <Label Grid.Row="6" Grid.ColumnSpan="2"/>
 
-                        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Add the book" Background="Silver" BorderThickness="0" Padding="4"/>
+                        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Add the book" Click="AddBook" Background="Silver" BorderThickness="0" Padding="4"/>
                     </Grid>
                 </StackPanel>
             </Border>
