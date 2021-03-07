@@ -1,0 +1,5 @@
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.csprojAssemblyReference.cache
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\MainWindow.g.cs
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\App.g.cs
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager_MarkupCompile.cache
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager_MarkupCompile.lref
