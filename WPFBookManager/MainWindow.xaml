@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFBookManager"
-        mc:Ignorable="d" Background="Cornsilk"
+        mc:Ignorable="d" Background="Beige"
         Title="MainWindow" Height="600" Width="950">
     <Grid>
         <Grid.RowDefinitions>
@@ -26,6 +26,61 @@
                 <DataGridTextColumn Header="Pages" Binding="{Binding Pages}"/>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Grid Grid.Row="2">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="black" BorderThickness="1" Margin="5" Background="Cornsilk" CornerRadius="3">
+                <StackPanel Margin="5">
+                    <Label Content="Add a new book" HorizontalAlignment="center" VerticalAlignment="center" FontWeight="Bold"/>
+
+                    <Grid Margin="5" x:Name="AddNewBookGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Title"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}"/>
+                        
+                        <Label Grid.Row="1" Grid.Column="0" Content="Author"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Author}"/>
+                        
+                        <Label Grid.Row="2" Grid.Column="0" Content="Publisher"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Publisher}"/>
+                        
+                        <Label Grid.Row="3" Grid.Column="0" Content="Genre"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Genre}"/>
+                        
+                        <Label Grid.Row="4" Grid.Column="0" Content="Year"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}"/>
+                        
+                        <Label Grid.Row="5" Grid.Column="0" Content="Pages"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}"/>
+
+                        <Label Grid.Row="6" Grid.ColumnSpan="2"/>
+
+                        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Add the book" Background="Silver" BorderThickness="0" Padding="4"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+            
+        </Grid>
         
     </Grid>
 </Window>

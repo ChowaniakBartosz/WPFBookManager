@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFBookManager.Data;
 
 namespace WPFBookManager
 {
@@ -20,9 +21,18 @@ namespace WPFBookManager
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        BookDbContext dbContext;
+
+        public MainWindow(BookDbContext dbContext)
         {
+            this.dbContext = dbContext;
             InitializeComponent();
+            GetBooks();
+        }
+
+        private void GetBooks()
+        {
+            BookDG.ItemsSource = dbContext.Books.ToList();
         }
     }
 }
