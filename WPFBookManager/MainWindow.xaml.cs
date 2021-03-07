@@ -60,5 +60,13 @@ namespace WPFBookManager
             dbContext.SaveChanges();
             GetBooks();
         }
+
+        private void RemoveBook(object s, RoutedEventArgs e)
+        {
+            Book selectedBook = (s as FrameworkElement).DataContext as Book;
+            dbContext.Books.Remove(selectedBook);
+            dbContext.SaveChanges();
+            GetBooks();
+        }
     }
 }
