@@ -79,7 +79,53 @@
                     </Grid>
                 </StackPanel>
             </Border>
-            
+
+            <Border Grid.Column="1" BorderBrush="black" BorderThickness="1" Margin="5" Background="Cornsilk" CornerRadius="3">
+                <StackPanel Margin="5">
+                    <Label Content="Update a book" HorizontalAlignment="center" VerticalAlignment="center" FontWeight="Bold"/>
+
+                    <Grid Margin="5" x:Name="UpdateBookGrid">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0" Content="Title"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}"/>
+
+                        <Label Grid.Row="1" Grid.Column="0" Content="Author"/>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Author}"/>
+
+                        <Label Grid.Row="2" Grid.Column="0" Content="Publisher"/>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Publisher}"/>
+
+                        <Label Grid.Row="3" Grid.Column="0" Content="Genre"/>
+                        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding Genre}"/>
+
+                        <Label Grid.Row="4" Grid.Column="0" Content="Year"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}"/>
+
+                        <Label Grid.Row="5" Grid.Column="0" Content="Pages"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}"/>
+
+                        <Label Grid.Row="6" Grid.ColumnSpan="2"/>
+
+                        <Button Grid.Row="7" Grid.ColumnSpan="2" Content="Update the book" Click="UpdateBook" Background="Silver" BorderThickness="0" Padding="4"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+
         </Grid>
         
     </Grid>
