@@ -46,5 +46,19 @@ namespace WPFBookManager
             NewBook = new Book();
             AddNewBookGrid.DataContext = NewBook;
         }
+
+        Book selectedBook = new Book();
+        private void UpdateBookForEdit(object s, RoutedEventArgs e)
+        {
+            selectedBook = (s as FrameworkElement).DataContext as Book;
+            UpdateBookGrid.DataContext = selectedBook;
+        }
+
+        private void UpdateBook(object s, RoutedEventArgs e)
+        {
+            dbContext.Update(selectedBook);
+            dbContext.SaveChanges();
+            GetBooks();
+        }
     }
 }

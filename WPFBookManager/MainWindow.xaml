@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFBookManager"
         mc:Ignorable="d" Background="Beige"
-        Title="MainWindow" Height="600" Width="950">
+        Title="MainWindow" Height="600" Width="950" MinHeight="500" MinWidth="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Book Manager" FontWeight="Black" FontSize="22" />
@@ -24,6 +24,14 @@
                 <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="Pages" Binding="{Binding Pages}"/>
+
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Update" Click="UpdateBookForEdit" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
