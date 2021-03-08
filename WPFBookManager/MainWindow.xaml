@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFBookManager"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d" Background="Beige"
-        Title="List of Books - WPF Book Manager" Height="600" Width="950" MinHeight="500" MinWidth="700">
+        Title="WPF Book Manager - List of Books" Height="600" Width="950" MinHeight="500" MinWidth="700">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
@@ -18,7 +18,7 @@
             <Label.Content>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                     <fa:ImageAwesome Icon="Book" Width="30" />
-                    <TextBlock FontSize="24" Margin="10, 0, 0, 0">WPF Book Manager</TextBlock>
+                    <TextBlock FontSize="24" Margin="10, 0, 0, 0" FontFamily="Roboto, sans-serif">WPF Book Manager</TextBlock>
                 </StackPanel>
             </Label.Content>
         </Label>
