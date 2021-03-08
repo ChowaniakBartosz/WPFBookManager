@@ -40,9 +40,10 @@ namespace WPFBookManager
             GetPublishers();
             GetGenres();
 
-            // clears tetboxes
-            // AddNewBookGrid.DataContext = null;
             AddNewBookGrid.DataContext = NewBook;
+
+            // for testing only
+            comboAuthorEdit.SelectedItem = dbContext.Authors.Where(y => y.Id == 0).Select(x => x.Name).ToString();
         }
 
         /// <summary>
@@ -63,8 +64,6 @@ namespace WPFBookManager
             //})
             //.ToList();
 
-            // wyswietla nazwy zamiast foreignkey
-            // BookDG.ItemsSource = books;
             BookDG.ItemsSource = dbContext.Books.ToList();
         }
 
@@ -155,6 +154,9 @@ namespace WPFBookManager
         {
             selectedBook = (s as FrameworkElement).DataContext as Book;
             UpdateBookGrid.DataContext = selectedBook;
+
+            // add right combobox values !!!!!!!!!
+                //dbContext.Authors.Where(x => x.Id == 3).Select(y => y.Name).ToString();
         }
 
         /// <summary>
@@ -164,9 +166,23 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void UpdateBook(object s, RoutedEventArgs e)
         {
+            // assigns values selected in edit form to the slected book
+            var selectedAuthor = comboAuthorEdit.SelectedItem;
+            var selectedPublisher = comboPublisherEdit.SelectedItem;
+            var selectedGenre = comboGenreEdit.SelectedItem;
+
+            selectedBook.Author = dbContext.Authors.Where(x => x.Name == selectedAuthor).FirstOrDefault() as Author;
+            selectedBook.Publisher = dbContext.Publishers.Where(x => x.Name == selectedPublisher).FirstOrDefault() as Publisher;
+            selectedBook.Genre = dbContext.Genres.Where(x => x.Name == selectedGenre).FirstOrDefault() as Genre;
+            //selectedBook.Author = dbContext.Authors.Where(x => x.Name == comboAuthorEdit.SelectedItem) as Author;
+            //selectedBook.Publisher = dbContext.Publishers.Where(x => x.Name == comboPublisherEdit.SelectedItem) as Publisher;
+            //selectedBook.Genre = dbContext.Genres.Where(x => x.Name == comboGenreEdit.SelectedItem) as Genre;
+
             dbContext.Update(selectedBook);
             dbContext.SaveChanges();
             GetBooks();
+
+            // clears inputs in edit form
             UpdateBookGrid.DataContext = null;
         }
 
@@ -184,6 +200,7 @@ namespace WPFBookManager
             dbContext.Books.Remove(selectedBook);
             dbContext.SaveChanges();
             GetBooks();
+            UpdateBookGrid.DataContext = null;
         }
 
         /// <summary>
