@@ -51,17 +51,17 @@ namespace WPFBookManager
         private void GetBooks()
         {
             // there's probably a better way to do it, but i have to leave it as it is for now
-            var books = dbContext.Books.Select(x => new
-            {
-                Id = x.Id,
-                Title = x.Title,
-                Author = dbContext.Authors.Where(y => y.Id == x.AuthorId).FirstOrDefault().Name,
-                Publisher = dbContext.Publishers.Where(y => y.Id == x.PublisherId).FirstOrDefault().Name,
-                Genre = dbContext.Genres.Where(y => y.Id == x.GenreId).FirstOrDefault().Name,
-                Year = x.Year,
-                Pages = x.Pages
-            })
-            .ToList();
+            //var books = dbContext.Books.Select(x => new
+            //{
+            //    Id = x.Id,
+            //    Title = x.Title,
+            //    Author = dbContext.Authors.Where(y => y.Id == x.AuthorId).FirstOrDefault().Name,
+            //    Publisher = dbContext.Publishers.Where(y => y.Id == x.PublisherId).FirstOrDefault().Name,
+            //    Genre = dbContext.Genres.Where(y => y.Id == x.GenreId).FirstOrDefault().Name,
+            //    Year = x.Year,
+            //    Pages = x.Pages
+            //})
+            //.ToList();
 
             // wyswietla nazwy zamiast foreignkey
             // BookDG.ItemsSource = books;
@@ -99,20 +99,49 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void AddBook(object s, RoutedEventArgs e)
         {
-            var author = dbContext.Authors.Where(x => x.Name == comboAuthor.SelectedItem.ToString()).FirstOrDefault();
-            var publisher = dbContext.Publishers.Where(x => x.Name == comboPublisher.SelectedItem.ToString()).FirstOrDefault();
-            var genre = dbContext.Genres.Where(x => x.Name == comboGenre.SelectedItem.ToString()).FirstOrDefault();
 
-            NewBook.Author = author;
-            NewBook.Publisher = publisher;
-            NewBook.Genre = genre;
+            // validating if there are any empty inputs
+            if(TextBoxTitle.Text == "")
+            {
+                MessageBox.Show("Title cannot be empty!", "Insert title", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (comboAuthor.SelectedItem == null)
+            {
+                MessageBox.Show("Author cannot be empty!", "Choose the author", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (comboPublisher.SelectedItem == null)
+            {
+                MessageBox.Show("Publisher cannot be empty!", "Choose the publisher", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (comboGenre.SelectedItem == null)
+            {
+                MessageBox.Show("Genre cannot be empty!", "Choose the genre", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (TextBoxYear.Text == "")
+            {
+                MessageBox.Show("Year cannot be empty!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (TextBoxPages.Text == "")
+            {
+                MessageBox.Show("Enter the year!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                var author = dbContext.Authors.Where(x => x.Name == comboAuthor.SelectedItem.ToString()).FirstOrDefault();
+                var publisher = dbContext.Publishers.Where(x => x.Name == comboPublisher.SelectedItem.ToString()).FirstOrDefault();
+                var genre = dbContext.Genres.Where(x => x.Name == comboGenre.SelectedItem.ToString()).FirstOrDefault();
 
-            dbContext.Books.Add(NewBook);
-            dbContext.SaveChanges();
-            GetBooks();
-            //  AddNewBookGrid.DataContext = null;
-            NewBook = new Book();
-            AddNewBookGrid.DataContext = NewBook;
+                NewBook.Author = author;
+                NewBook.Publisher = publisher;
+                NewBook.Genre = genre;
+
+                dbContext.Books.Add(NewBook);
+                dbContext.SaveChanges();
+                GetBooks();
+                //  AddNewBookGrid.DataContext = null;
+                NewBook = new Book();
+                AddNewBookGrid.DataContext = NewBook;
+            }
         }
 
         Book selectedBook = new Book();

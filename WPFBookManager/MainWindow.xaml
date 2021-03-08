@@ -94,7 +94,7 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="Title"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Name="TextBoxTitle"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Author"/>
                         <Grid Grid.Row="1" Grid.Column="1">
@@ -153,10 +153,10 @@
                         </Grid>
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Year"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}" Name="TextBoxYear" />
 
                         <Label Grid.Row="5" Grid.Column="0" Content="Pages"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}" Name="TextBoxPages" />
 
                         <Label Grid.Row="6" Grid.ColumnSpan="2"/>
 
