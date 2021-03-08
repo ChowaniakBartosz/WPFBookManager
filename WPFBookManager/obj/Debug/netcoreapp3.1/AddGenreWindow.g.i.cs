@@ -71,7 +71,7 @@ namespace WPFBookManager {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/WPFBookManager;component/addgenrewindow.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WPFBookManager;V1.0.0.0;component/addgenrewindow.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\AddGenreWindow.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
