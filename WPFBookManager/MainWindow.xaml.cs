@@ -37,7 +37,10 @@ namespace WPFBookManager
             InitializeComponent();
             GetBooks();
             GetAuthors();
+            GetPublishers();
+            GetGenres();
 
+            // clears tetboxes
             AddNewBookGrid.DataContext = null;
         }
 
@@ -46,26 +49,33 @@ namespace WPFBookManager
         /// </summary>
         private void GetBooks()
         {
-            BookDG.ItemsSource = dbContext.Books.ToList();
+            var books = dbContext.Books.ToList();
 
-            // lista encji do combo boxa
-            // comboTitle.ItemsSource = dbContext.Books.Select(x => x.Title).ToList();
+            BookDG.ItemsSource = books;
         }
 
         private void GetAuthors()
         {
-            comboAuthor.ItemsSource = dbContext.Authors.ToList().Select(x => x.Name);
+            var authors = dbContext.Authors.ToList();
+
+            comboAuthor.ItemsSource = authors.Select(x => x.Name);
             comboAuthorEdit.ItemsSource = comboAuthor.ItemsSource;
         }
 
         private void GetGenres()
         {
+            var genres = dbContext.Genres.ToList();
 
+            comboGenre.ItemsSource = genres.Select(x => x.Name);
+            comboGenreEdit.ItemsSource = comboGenre.ItemsSource;
         }
 
         private void GetPublishers()
         {
+            var publishers = dbContext.Publishers.ToList();
 
+            comboPublisher.ItemsSource = publishers.Select(x => x.Name);
+            comboPublisherEdit.ItemsSource = comboPublisher.ItemsSource;
         }
 
         /// <summary>
@@ -139,8 +149,9 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void addGenreBtn_Click(object s, RoutedEventArgs e)
         {
-            AddGenreWindow GenreWindow = new AddGenreWindow();
+            AddGenreWindow GenreWindow = new AddGenreWindow(dbContext);
             GenreWindow.ShowDialog();
+            GetGenres();
         }
 
         /// <summary>
@@ -150,8 +161,9 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void addPublisherBtn_Click(object s, RoutedEventArgs e)
         {
-            AddPublisherWindow PublisherWindow = new AddPublisherWindow();
+            AddPublisherWindow PublisherWindow = new AddPublisherWindow(dbContext);
             PublisherWindow.ShowDialog();
+            GetPublishers();
         }
     }
 }

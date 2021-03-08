@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPFBookManager"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
-        Title="AddAuthorWindow" Height="140" Width="250" MinHeight="140" MinWidth="250">
+        Title="Add new author" Height="140" Width="250" MinHeight="140" MinWidth="250">
     <Grid x:Name="AddNewAuthorGrid">
         <StackPanel Margin="5">
             <TextBlock Margin="0, 3, 0, 0">Author's Name:</TextBlock>
