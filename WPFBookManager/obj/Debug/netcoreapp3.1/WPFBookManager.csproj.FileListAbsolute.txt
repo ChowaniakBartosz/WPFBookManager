@@ -57,3 +57,9 @@ C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.pdb
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.genruntimeconfig.cache
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\bin\Debug\netcoreapp3.1\FontAwesome.WPF.dll
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddAuthorWindow.g.cs
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddGenreWindow.g.cs
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddPublisherWindow.g.cs
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddAuthorWindow.baml
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddGenreWindow.baml
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\AddPublisherWindow.baml
