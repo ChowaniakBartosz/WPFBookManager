@@ -41,7 +41,8 @@ namespace WPFBookManager
             GetGenres();
 
             // clears tetboxes
-            AddNewBookGrid.DataContext = null;
+            // AddNewBookGrid.DataContext = null;
+            AddNewBookGrid.DataContext = NewBook;
         }
 
         /// <summary>
@@ -49,9 +50,22 @@ namespace WPFBookManager
         /// </summary>
         private void GetBooks()
         {
-            var books = dbContext.Books.ToList();
+            // there's probably a better way to do it, but i have to leave it as it is for now
+            var books = dbContext.Books.Select(x => new
+            {
+                Id = x.Id,
+                Title = x.Title,
+                Author = dbContext.Authors.Where(y => y.Id == x.AuthorId).FirstOrDefault().Name,
+                Publisher = dbContext.Publishers.Where(y => y.Id == x.PublisherId).FirstOrDefault().Name,
+                Genre = dbContext.Genres.Where(y => y.Id == x.GenreId).FirstOrDefault().Name,
+                Year = x.Year,
+                Pages = x.Pages
+            })
+            .ToList();
 
-            BookDG.ItemsSource = books;
+            // wyswietla nazwy zamiast foreignkey
+            // BookDG.ItemsSource = books;
+            BookDG.ItemsSource = dbContext.Books.ToList();
         }
 
         private void GetAuthors()
@@ -73,7 +87,7 @@ namespace WPFBookManager
         private void GetPublishers()
         {
             var publishers = dbContext.Publishers.ToList();
-
+            
             comboPublisher.ItemsSource = publishers.Select(x => x.Name);
             comboPublisherEdit.ItemsSource = comboPublisher.ItemsSource;
         }
@@ -85,10 +99,20 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void AddBook(object s, RoutedEventArgs e)
         {
+            var author = dbContext.Authors.Where(x => x.Name == comboAuthor.SelectedItem.ToString()).FirstOrDefault();
+            var publisher = dbContext.Publishers.Where(x => x.Name == comboPublisher.SelectedItem.ToString()).FirstOrDefault();
+            var genre = dbContext.Genres.Where(x => x.Name == comboGenre.SelectedItem.ToString()).FirstOrDefault();
+
+            NewBook.Author = author;
+            NewBook.Publisher = publisher;
+            NewBook.Genre = genre;
+
             dbContext.Books.Add(NewBook);
             dbContext.SaveChanges();
             GetBooks();
-            AddNewBookGrid.DataContext = null;
+            //  AddNewBookGrid.DataContext = null;
+            NewBook = new Book();
+            AddNewBookGrid.DataContext = NewBook;
         }
 
         Book selectedBook = new Book();
@@ -125,6 +149,9 @@ namespace WPFBookManager
         private void RemoveBook(object s, RoutedEventArgs e)
         {
             Book selectedBook = (s as FrameworkElement).DataContext as Book;
+
+            //selectedBook = dbContext.Books.Where(x => x.Id == tmpSelectedBook.Id);
+
             dbContext.Books.Remove(selectedBook);
             dbContext.SaveChanges();
             GetBooks();

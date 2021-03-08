@@ -27,9 +27,9 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="*" />
-                <DataGridTextColumn Header="Author" Binding="{Binding Author}"/>
-                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}"/>
-                <DataGridTextColumn Header="Genre" Binding="{Binding Genre}"/>
+                <DataGridTextColumn Header="Author" Binding="{Binding Author.Name}"/>
+                <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher.Name}"/>
+                <DataGridTextColumn Header="Genre" Binding="{Binding Genre.Name}"/>
                 <DataGridTextColumn Header="Year" Binding="{Binding Year}"/>
                 <DataGridTextColumn Header="Pages" Binding="{Binding Pages}"/>
 
@@ -103,7 +103,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <ComboBox Grid.Column="0" Text="{Binding Author}" Name="comboAuthor" />
+                            <ComboBox Grid.Column="0" Text="{Binding AuthorId}" Name="comboAuthor" />
                             <Button Grid.Column="1" Background="Silver" BorderThickness="0" Padding="4" Click="addAuthorBtn_Click">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -123,7 +123,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <ComboBox Grid.Column="0" Text="{Binding Publisher}" Name="comboPublisher" Grid.ColumnSpan="3" Margin="0,0,45,0"/>
+                            <ComboBox Grid.Column="0" Text="{Binding PublisherId}" Name="comboPublisher" Grid.ColumnSpan="3" Margin="0,0,45,0"/>
                             <Button Grid.Column="2" Background="Silver" BorderThickness="0" Padding="4" Click="addPublisherBtn_Click">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -141,7 +141,7 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <ComboBox Grid.Column="0" Text="{Binding Genre}" Name="comboGenre"/>
+                            <ComboBox Grid.Column="0" Text="{Binding GenreId}" Name="comboGenre"/>
                             <Button Grid.Column="1" Background="Silver" BorderThickness="0" Padding="4" Click="addGenreBtn_Click">
                                 <Button.Content>
                                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
