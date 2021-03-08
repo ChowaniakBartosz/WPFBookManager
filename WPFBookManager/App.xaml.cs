@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
-using WPFBookManager.Entities;
 
 namespace WPFBookManager
 {

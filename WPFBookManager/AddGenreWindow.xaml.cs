@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using WPFBookManager.Entities;
 
 namespace WPFBookManager
@@ -21,32 +11,47 @@ namespace WPFBookManager
         BookDbContext dbContext;
         Genre NewGenre = new Genre();
 
+        /// <summary>
+        /// AddGenreWindow Constructor
+        /// </summary>
+        /// <param name="dbContext">Used to pass DbContext</param>
         public AddGenreWindow(BookDbContext dbContext)
         {
+            // Assigning passed as an argument dbContext value
             this.dbContext = dbContext;
-            // Centers window
+
+            // Centering window
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
+            // Rendering window
             InitializeComponent();
 
+            // Binding genre to the grid
             AddNewGenreGrid.DataContext = NewGenre;
         }
 
+        /// <summary>
+        /// Method that adds genre when the Add button is clicked
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="e"></param>
         private void addGenreBtn(object s, RoutedEventArgs e)
         {
+            // Checks if user entered anything
             if (GenreNameTextbox.Text != "")
             {
-                // potrzebny dbcontext
-                // dbcontext.authors.add();
+                // Adding new genre
                 dbContext.Genres.Add(NewGenre);
-                // dbcontext.savechanges();
+
+                // Saving changes to the database
                 dbContext.SaveChanges();
-                // odswiezyc moze liste na mainwindow jak bedzie taka potrzeba
-                // zamknac okno
+
+                // Closing dialog box
                 this.Close();
             }
             else
             {
+                // Displaying information that user didn't enter any text
                 MessageBox.Show("Genre's name cannot be empty!", "Enter genre's name", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }

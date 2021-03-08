@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Policy;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace WPFBookManager
 {
@@ -21,30 +10,47 @@ namespace WPFBookManager
         BookDbContext dbContext;
         Entities.Publisher NewPublisher  = new Entities.Publisher();
 
+        /// <summary>
+        /// AddPublisherWindow constructor
+        /// </summary>
+        /// <param name="dbContext">Used to pass DbContext</param>
         public AddPublisherWindow(BookDbContext dbContext)
         {
+            // Assigning passed as an argument dbContext value
             this.dbContext = dbContext;
 
+            // Centering window
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
+            // Rendering window
             InitializeComponent();
 
+            // Binding author to the grid
             AddNewPublisherGrid.DataContext = NewPublisher;
         }
 
+        /// <summary>
+        /// Method that adds publisher when the Add button is clicked
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="e"></param>
         private void addPublisherBtn(object s, RoutedEventArgs e)
         {
+            // Checks if user entered anything
             if (PublisherNameTextbox.Text != "")
             {
-                // dbcontext.authors.add();
+                // Adding new publisher
                 dbContext.Publishers.Add(NewPublisher);
-                // dbcontext.savechanges();
+
+                // Saving changes to the database
                 dbContext.SaveChanges();
-                // zamknac okno
+
+                // Closing dialog box
                 this.Close();
             }
             else
             {
+                // Displaying information that user didn't enter any text
                 MessageBox.Show("Publisher's name cannot be empty!", "Enter publisher's name", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }

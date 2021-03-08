@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPFBookManager.Entities;
 
 namespace WPFBookManager
@@ -27,23 +16,29 @@ namespace WPFBookManager
         /// <summary>
         /// MainWindow Constructor, Gets list of all books
         /// </summary>
-        /// <param name="dbContext"></param>
+        /// <param name="dbContext">Used to pass DbContext</param>
         public MainWindow(BookDbContext dbContext)
         {
-            // centers window
+            // centering window on start
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
+            // Assigning passed as an argument dbContext value
             this.dbContext = dbContext;
+
+            // Rendering window
             InitializeComponent();
+
+            // Loading list of books
             GetBooks();
+            // Loading list of authors
             GetAuthors();
+            // Loading list of publishers
             GetPublishers();
+            // Loading list of genres
             GetGenres();
 
+            // Binding book to the grid
             AddNewBookGrid.DataContext = NewBook;
-
-            // for testing only
-            comboAuthorEdit.SelectedItem = dbContext.Authors.Where(y => y.Id == 0).Select(x => x.Name).ToString();
         }
 
         /// <summary>
@@ -51,22 +46,13 @@ namespace WPFBookManager
         /// </summary>
         private void GetBooks()
         {
-            // there's probably a better way to do it, but i have to leave it as it is for now
-            //var books = dbContext.Books.Select(x => new
-            //{
-            //    Id = x.Id,
-            //    Title = x.Title,
-            //    Author = dbContext.Authors.Where(y => y.Id == x.AuthorId).FirstOrDefault().Name,
-            //    Publisher = dbContext.Publishers.Where(y => y.Id == x.PublisherId).FirstOrDefault().Name,
-            //    Genre = dbContext.Genres.Where(y => y.Id == x.GenreId).FirstOrDefault().Name,
-            //    Year = x.Year,
-            //    Pages = x.Pages
-            //})
-            //.ToList();
-
+            // Displaying books in the datagrid
             BookDG.ItemsSource = dbContext.Books.ToList();
         }
 
+        /// <summary>
+        /// Loading list of authors
+        /// </summary>
         private void GetAuthors()
         {
             var authors = dbContext.Authors.ToList();
@@ -75,6 +61,9 @@ namespace WPFBookManager
             comboAuthorEdit.ItemsSource = comboAuthor.ItemsSource;
         }
 
+        /// <summary>
+        /// Loading list of genres
+        /// </summary>
         private void GetGenres()
         {
             var genres = dbContext.Genres.ToList();
@@ -83,6 +72,9 @@ namespace WPFBookManager
             comboGenreEdit.ItemsSource = comboGenre.ItemsSource;
         }
 
+        /// <summary>
+        /// Loading list of publishers
+        /// </summary>
         private void GetPublishers()
         {
             var publishers = dbContext.Publishers.ToList();
@@ -120,9 +112,17 @@ namespace WPFBookManager
             {
                 MessageBox.Show("Year cannot be empty!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            else if (!Int32.TryParse(TextBoxYear.Text, out int parsedYear))
+            {
+                MessageBox.Show("Year cannot be a string!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
             else if (TextBoxPages.Text == "")
             {
-                MessageBox.Show("Enter the year!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Enter the pages!", "Enter the pages", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (!Int32.TryParse(TextBoxPages.Text, out int parsedPages))
+            {
+                MessageBox.Show("Pages cannot be a string!", "Enter the pages", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -135,9 +135,14 @@ namespace WPFBookManager
                 NewBook.Genre = genre;
 
                 dbContext.Books.Add(NewBook);
+
+                // Saving changes to the database
                 dbContext.SaveChanges();
+
+                // Loading list of books
                 GetBooks();
-                //  AddNewBookGrid.DataContext = null;
+
+                // Clearing value of NewBook
                 NewBook = new Book();
                 AddNewBookGrid.DataContext = NewBook;
             }
@@ -153,9 +158,11 @@ namespace WPFBookManager
         private void UpdateBookForEdit(object s, RoutedEventArgs e)
         {
             selectedBook = (s as FrameworkElement).DataContext as Book;
+
+            // Binding selected book to the datagrid
             UpdateBookGrid.DataContext = selectedBook;
 
-            // add right combobox values !!!!!!!!!
+            // When update button is clicked, values in the combobox fiels in the edit form are changed
             comboAuthorEdit.SelectedItem = selectedBook.Author.Name;
             comboPublisherEdit.SelectedItem = selectedBook.Publisher.Name;
             comboGenreEdit.SelectedItem = selectedBook.Genre.Name;
@@ -168,7 +175,7 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void UpdateBook(object s, RoutedEventArgs e)
         {
-            // assigns values selected in edit form to the slected book
+            // assigns values selected in edit form to the selected book
             var selectedAuthor = comboAuthorEdit.SelectedItem;
             var selectedPublisher = comboPublisherEdit.SelectedItem;
             var selectedGenre = comboGenreEdit.SelectedItem;
@@ -193,9 +200,17 @@ namespace WPFBookManager
             {
                 MessageBox.Show("Year cannot be empty!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            else if (!Int32.TryParse(TextBoxYearEdit.Text, out int parsedYear))
+            {
+                MessageBox.Show("Year cannot be a string!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
             else if (TextBoxPagesEdit.Text == "")
             {
                 MessageBox.Show("Enter the year!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (!Int32.TryParse(TextBoxPagesEdit.Text, out int parsedPages))
+            {
+                MessageBox.Show("Year cannot be a string!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
             else
             {
@@ -221,11 +236,16 @@ namespace WPFBookManager
         {
             Book selectedBook = (s as FrameworkElement).DataContext as Book;
 
-            //selectedBook = dbContext.Books.Where(x => x.Id == tmpSelectedBook.Id);
-
+            // Removing selected book from the database
             dbContext.Books.Remove(selectedBook);
+
+            // Saving changes to the database
             dbContext.SaveChanges();
+
+            // Loading list of books
             GetBooks();
+
+            // Clearing inputs after removing books
             UpdateBookGrid.DataContext = null;
         }
 
@@ -236,8 +256,11 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void addAuthorBtn_Click(object s, RoutedEventArgs e)
         {
+            // Opening separate window
             AddAuthorWindow AuthorWindow = new AddAuthorWindow(dbContext);
             AuthorWindow.ShowDialog();
+
+            // Loading list of authors
             GetAuthors();
         }
 
@@ -248,6 +271,7 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void addGenreBtn_Click(object s, RoutedEventArgs e)
         {
+            // Opening separate window
             AddGenreWindow GenreWindow = new AddGenreWindow(dbContext);
             GenreWindow.ShowDialog();
             GetGenres();
@@ -260,6 +284,7 @@ namespace WPFBookManager
         /// <param name="e"></param>
         private void addPublisherBtn_Click(object s, RoutedEventArgs e)
         {
+            // Opening separate window
             AddPublisherWindow PublisherWindow = new AddPublisherWindow(dbContext);
             PublisherWindow.ShowDialog();
             GetPublishers();
