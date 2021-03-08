@@ -56,3 +56,4 @@ C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.dll
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.pdb
 C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\obj\Debug\netcoreapp3.1\WPFBookManager.genruntimeconfig.cache
+C:\Users\Bartosz\source\repos\WPFBookManager\WPFBookManager\bin\Debug\netcoreapp3.1\FontAwesome.WPF.dll
