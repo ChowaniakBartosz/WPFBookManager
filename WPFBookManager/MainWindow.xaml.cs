@@ -156,7 +156,9 @@ namespace WPFBookManager
             UpdateBookGrid.DataContext = selectedBook;
 
             // add right combobox values !!!!!!!!!
-                //dbContext.Authors.Where(x => x.Id == 3).Select(y => y.Name).ToString();
+            comboAuthorEdit.SelectedItem = selectedBook.Author.Name;
+            comboPublisherEdit.SelectedItem = selectedBook.Publisher.Name;
+            comboGenreEdit.SelectedItem = selectedBook.Genre.Name;
         }
 
         /// <summary>
