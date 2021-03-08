@@ -1,6 +1,8 @@
 # WPFBookManager
 WPFBookManager is a small WPF application for managing your favourite books. Program is based on *.NET Core 3.1* and utilizes *Entity Framework* and *SQLite* database.
 
+![Screenshot](https://raw.githubusercontent.com/chwnk/WPFBookManager/main/Screenshot.png "WPFBookManager")
+
 ## Requirements
 * Microsoft Visual Studio (*Latest recommended*)
 
