@@ -6,6 +6,11 @@ WPFBookManager is a small WPF application for managing your favourite books. Pro
 ## Requirements
 * Microsoft Visual Studio (*Latest recommended*)
 
+## NuGet packages used
+* [Microsoft.EntityFrameworkCore.Sqlite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite)
+* [Microsoft.Extensions.DependencyInjection](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/)
+* [FontAwesome.WPF](https://www.nuget.org/packages/FontAwesome.WPF/)
+
 ## Project Structure
 **View:**
 * AddAuthorWindow.xaml - *Contains UI for Add Author window*
