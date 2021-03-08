@@ -194,7 +194,7 @@
                         </Grid.RowDefinitions>
 
                         <Label Grid.Row="0" Grid.Column="0" Content="Title"/>
-                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}"/>
+                        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Name="TextBoxTitleEdit"/>
 
                         <Label Grid.Row="1" Grid.Column="0" Content="Author"/>
                         <ComboBox Grid.Row="1" Grid.Column="1" Text="{Binding Author}" Name="comboAuthorEdit"/>
@@ -206,10 +206,10 @@
                         <ComboBox Grid.Row="3" Grid.Column="1" Text="{Binding Genre}" Name="comboGenreEdit"/>
 
                         <Label Grid.Row="4" Grid.Column="0" Content="Year"/>
-                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}"/>
+                        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Year}" Name="TextBoxYearEdit"/>
 
                         <Label Grid.Row="5" Grid.Column="0" Content="Pages"/>
-                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}"/>
+                        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding Pages}" Name="TextBoxPagesEdit"/>
 
                         <Label Grid.Row="6" Grid.ColumnSpan="2"/>
 

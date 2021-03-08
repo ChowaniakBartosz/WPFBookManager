@@ -171,19 +171,43 @@ namespace WPFBookManager
             var selectedPublisher = comboPublisherEdit.SelectedItem;
             var selectedGenre = comboGenreEdit.SelectedItem;
 
-            selectedBook.Author = dbContext.Authors.Where(x => x.Name == selectedAuthor).FirstOrDefault() as Author;
-            selectedBook.Publisher = dbContext.Publishers.Where(x => x.Name == selectedPublisher).FirstOrDefault() as Publisher;
-            selectedBook.Genre = dbContext.Genres.Where(x => x.Name == selectedGenre).FirstOrDefault() as Genre;
-            //selectedBook.Author = dbContext.Authors.Where(x => x.Name == comboAuthorEdit.SelectedItem) as Author;
-            //selectedBook.Publisher = dbContext.Publishers.Where(x => x.Name == comboPublisherEdit.SelectedItem) as Publisher;
-            //selectedBook.Genre = dbContext.Genres.Where(x => x.Name == comboGenreEdit.SelectedItem) as Genre;
+            if (TextBoxTitleEdit.Text == "")
+            {
+                MessageBox.Show("Title cannot be empty!", "Insert title", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (selectedAuthor == null)
+            {
+                MessageBox.Show("Author cannot be empty!", "Choose the author", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (selectedPublisher == null)
+            {
+                MessageBox.Show("Publisher cannot be empty!", "Choose the publisher", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (selectedGenre == null)
+            {
+                MessageBox.Show("Genre cannot be empty!", "Choose the genre", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (TextBoxYearEdit.Text == "")
+            {
+                MessageBox.Show("Year cannot be empty!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else if (TextBoxPagesEdit.Text == "")
+            {
+                MessageBox.Show("Enter the year!", "Enter the year", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                selectedBook.Author = dbContext.Authors.Where(x => x.Name == selectedAuthor).FirstOrDefault() as Author;
+                selectedBook.Publisher = dbContext.Publishers.Where(x => x.Name == selectedPublisher).FirstOrDefault() as Publisher;
+                selectedBook.Genre = dbContext.Genres.Where(x => x.Name == selectedGenre).FirstOrDefault() as Genre;
 
-            dbContext.Update(selectedBook);
-            dbContext.SaveChanges();
-            GetBooks();
+                dbContext.Update(selectedBook);
+                dbContext.SaveChanges();
+                GetBooks();
 
-            // clears inputs in edit form
-            UpdateBookGrid.DataContext = null;
+                // clears inputs in edit form
+                UpdateBookGrid.DataContext = null;
+            }
         }
 
         /// <summary>
